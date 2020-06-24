@@ -1,0 +1,41 @@
+.index {
+  width: 100%;
+  height: 100%;
+  background-color: #60b1aa;
+}
+.index .hea {
+  background: #3a625b;
+  height: 80px;
+  line-height: 80px;
+  padding-left: 50px;
+}
+.index .sec {
+  background-color: #fff;
+  width: 400px;
+  height: 300px;
+  margin: 0 auto;
+  margin-top: 60px;
+  padding-top: 20px;
+  border-radius: 10px;
+}
+.index .sec div {
+  text-align: center;
+}
+.index .sec div h1 {
+  font-weight: 600;
+  text-align: center;
+}
+.index .sec div .login-form {
+  width: 300px;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 30px;
+  height: 218px;
+}
+.index .sec div .login-form .ant-btn-primary {
+  width: 100%;
+}
+.index .sec div {
+  text-align: left;
+  font-size: 10px;
+}
