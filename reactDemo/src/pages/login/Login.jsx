@@ -1,15 +1,25 @@
 import React, { Component } from "react"
 import "./login.css"
+import {reqlogin} from "../../Api/index"
+import memory from "../../util/memory"
+import local from "../../util/local" 
 
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 let rules = [{ required: true, message: 'Please input your Username!' },
 {max:14,message:"最大长度为14个字符"},
-{min:6,message:"最小长度为14个字符"},
-{pattern:/[a-zA-Z0-9]{6,14}$/,message:"用户名必须由字母数字来命名"},]
+{min:4,message:"最小长度为4个字符"},
+{pattern:/[a-zA-Z0-9]{4,14}$/,message:"用户名必须由字母数字来命名"},]
 export default class Login extends Component {
-    onFinish = (value) => {
-        console.log(value)
+    onFinish =async value => {
+      let result=await reqlogin(value.username,value.password)
+      console.log(result)
+        //当登录成功的时候往内存中存储一份，往local中存储一份
+        if(result.status===0){
+            memory.user=result.data
+            local.setStor(result.data)
+            this.props.history.replace("/")
+        }
     }
     render() {
         return (
@@ -48,7 +58,7 @@ export default class Login extends Component {
                                 <Button type="primary" htmlType="submit" className="login-form-button">
                                     登录
         </Button>
-        Or <a href="">register now!</a>
+      
                             </Form.Item>
                         </Form>
                     </div>
