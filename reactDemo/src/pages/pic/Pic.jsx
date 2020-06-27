@@ -7,9 +7,9 @@ export default class Pic extends Component{
     render(){
         return(
             <Switch>
-                <Route path="/pic/bing" component={Bing}></Route>
-                <Route path="/pic/zhe" component={Zhe}></Route>
-                <Route path="/pic/zhu" component={Zhu}></Route>
+                <Route path="/admin/pic/bing" component={Bing}></Route>
+                <Route path="/admin/pic/zhe" component={Zhe}></Route>
+                <Route path="/admin/pic/zhu" component={Zhu}></Route>
             </Switch>
         )
     }

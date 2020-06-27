@@ -3,7 +3,7 @@ import React, { Component } from "react"
 export default class Two extends Component{
     render(){
         return(
-            <div>Shoptwo</div>
+            <div>{this.props.children}</div>
         )
     }
 }

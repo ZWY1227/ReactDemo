@@ -1,13 +1,13 @@
-.big .sid .h {
+.sid .h {
   height: 63px;
-  background-color: #fff;
   line-height: 63px;
   font-size: 25px;
   padding-left: 15px;
+  color: #fff;
 }
-.big .small .hea {
-  background-color: pink;
+.small .hea {
+  background-color: yellow;
 }
-.big .small .con {
+.small .con {
   margin-left: 100px;
 }
