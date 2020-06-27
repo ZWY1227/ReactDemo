@@ -1,11 +1,17 @@
 import React,{Component} from "react"
-import {Layout } from 'antd';
+import {Layout, message } from 'antd';
 import "./hea.css"
 import filterTime from "../../util/filter_fun"
 import {reqweather} from "../../Api/index"
 import {withRouter} from "react-router-dom"
 import menuList from "../../config/menuConfig"
 import memory from "../../util/memory"
+import local from "../../util/local"
+
+
+import { Modal } from 'antd';
+
+const { confirm } = Modal;
 const { Header} = Layout;
 
 class Hea extends Component{
@@ -13,6 +19,22 @@ class Hea extends Component{
         url:"",
         weather:"",
         time:""
+    }
+    outLogin=()=>{
+        confirm({
+            title: '提示',
+            content: '您确定要退出登录吗？',
+            onOk:()=>{
+                //走到这里说明确定退出，那就清空内存和硬盘
+                local.removeStor()
+                memory.user={}
+                message.success("您已退出登录")
+                this.props.replace("/login")
+            },
+            onCancel() {
+                message.error("nook")
+            },
+          });
     }
     render(){
         let title=this.getTitle()
@@ -26,7 +48,7 @@ class Hea extends Component{
                             欢迎: {user.username}
                         </li>
                         <li>
-                            <button>退出</button>
+                            <button onClick={this.outLogin}>退出</button>
                         </li>
                     </ul>
                 </div>

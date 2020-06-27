@@ -1,24 +1,23 @@
 import React,{Component} from "react"
 import {Menu,Layout } from 'antd';
-import {Link} from "react-router-dom"
+import {Link,withRouter} from "react-router-dom"
 import menuList from "../../config/menuConfig"
 import "../../pages/admin/admin.less"
+
 import {
-    UploadOutlined,
-    WindowsOutlined,
     AreaChartOutlined,
-    SafetyOutlined,
-    UserOutlined,
     HomeOutlined
 } from '@ant-design/icons';
 const { SubMenu } = Menu;
 const { Sider} = Layout;
-export default class Left extends Component{
+
+class Left extends Component{
     render(){
+        let path=this.props.location.pathname
         return(
             <Sider className="sid">
             <h1 className="h">后台管理</h1>
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={[path]}>
             {
                 menuList.map((item)=>{
                     if(!item.children){
@@ -60,3 +59,4 @@ export default class Left extends Component{
         )
     }
 }
+export default withRouter(Left)

@@ -8,7 +8,7 @@
 .he .top {
   height: 55px;
   line-height: 55px;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #00aa98;
   overflow: hidden;
 }
 .he .top ul {
@@ -39,9 +39,26 @@
   justify-content: space-between;
 }
 .he .bottom .left {
-  font-size: 20px;
+  padding-left: 40px;
+  font-size: 16px;
   font-weight: 700;
   color: #666;
+  position: relative;
+  line-height: 20px;
+}
+.he .bottom .left::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 30%;
+  transform: translateX(50%);
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-top: 20px solid #fff;
+}
+.he .bottom .right {
+  line-height: 20px;
 }
 .he .bottom .right ul {
   display: flex;
@@ -57,5 +74,5 @@
   margin-right: 10px;
 }
 .he .bottom .right ul li img {
-  width: 30px;
+  width: 20px;
 }
