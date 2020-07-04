@@ -1,0 +1,1 @@
+export const PASE_SIZE="2"
