@@ -54,5 +54,7 @@ export const checkStatus=(productId,status)=>ajax('/manage/product/updateStatus'
 export const upPic=(image)=>ajax('/manage/img/upload',{image},'POST')
 //15)删除图片
 export const deleteImage=(name)=>ajax('/manage/img/delete',{name},'POST')
+//16）根据id来获取分类、
+export const reqcatebyid=(categoryId)=>ajax("/manage/category/info",{categoryId})
 
 //-----------------------角色的接口

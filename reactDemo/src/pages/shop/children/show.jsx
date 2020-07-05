@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Card, Table, message, Form, Input, Select, Button } from 'antd';
 import { PASE_SIZE } from "../../../util/pageSize"//每页条数
-import { reqshopList, searchShop } from "../../../Api/index"
+import { reqshopList, searchShop,checkStatus } from "../../../Api/index"
 import { PlusOutlined } from "@ant-design/icons"
 import LinkButton from "../../../components/Button/Button"
 const { Option } = Select;
@@ -31,7 +31,7 @@ export default class Show extends Component {
     let productType = this.state.product
     let content = this.state.inputcontent
     let result = await searchShop(1, PASE_SIZE, productType, content)
-    console.log("!@#$",result)
+    console.log("!@#$", result)
     if (result.status === 0) {
       console.log(result.data.list)
       result.data.list.forEach(item => item.key = item._id)
@@ -53,8 +53,8 @@ export default class Show extends Component {
       </div>
     )
     let extra = (
-      <Button type='primary' onClick={this.showAdd}>
-        <PlusOutlined onClick={this.goadd} />添加
+      <Button type='primary' onClick={this.goadd}>
+        <PlusOutlined/>添加
       </Button>
     )
     return (
@@ -86,13 +86,19 @@ export default class Show extends Component {
     }
   }
   goadd = () => {
-    this.props.history.replace("/admin/shop/two/add")
+    this.props.history.push("/admin/shop/two/add")
   }
   goDetail = (item) => {
-    this.props.history.push({pathname:"/admin/shop/two/detail",query:{item}})
+    this.props.history.push({ pathname: "/admin/shop/two/detail",state:{ item } })
   }
   goedit = (item) => {
-    this.props.history.push({pathname:"/admin/shop/two/add",query:{item}})
+    this.props.history.push({ pathname: "/admin/shop/two/add", state:{ item } })
+  }
+  out = async (id, status) => {
+    let result = await checkStatus(id, status)
+    if(result.status===0){
+      this.inintdateSouce(1)
+    }
   }
   initcolumns = () => {
     const columns = [
@@ -110,11 +116,13 @@ export default class Show extends Component {
       },
       {
         title: '商品状态',
-        render: () => {
+        render: (item) => {
+          let id = item._id
+          let status = item.status
           return (
             <span>
-              <Button type='primary'>下架</Button>
-              <p>在售</p>
+              <Button type='primary' onClick={() => this.out(id, status === 1 ? 2 : 1)}>{status===1?'下架':'上架'}</Button>
+              <p>{status===1?'在售':'已下架'}</p>
             </span>
           )
         }
@@ -125,8 +133,8 @@ export default class Show extends Component {
           // console.log(item)
           return (
             <div>
-              <LinkButton onClick={()=>{this.goDetail(item)}}>详情</LinkButton>
-              <LinkButton onClick={()=>this.goedit(item)}>编辑</LinkButton>
+              <LinkButton onClick={() => { this.goDetail(item) }}>详情</LinkButton>
+              <LinkButton onClick={() => this.goedit(item)}>编辑</LinkButton>
             </div>
           )
         }

@@ -29,7 +29,7 @@ class Hea extends Component{
                 local.removeStor()
                 memory.user={}
                 message.success("您已退出登录")
-                this.props.replace("/login")
+                this.props.history.replace("/login")
             },
             onCancel() {
                 message.error("nook")
