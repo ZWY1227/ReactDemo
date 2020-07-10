@@ -25,6 +25,13 @@ export default class User extends Component {
         this.setState({
             visible: false
         })
+        this.setState({
+            username: "",//默认用户名
+            phone: "",//默认手机号
+            email: "",//默认邮箱
+            role_id:"0",//默认角色
+            _id: ""//用户id
+        })
     }
     addOK = async (e) => {
         let { username, password, phone, email, role_id } = e
